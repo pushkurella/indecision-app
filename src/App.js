@@ -2,45 +2,36 @@ import React from 'react';
 import './App.css';
 import ReactDOM from 'react-dom';
 
-class Counter extends React.Component {
-  // let count =0;
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props){
+class VisibilityToggle extends React.Component {
+  constructor(props) {
     super(props);
+    this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
     this.state = {
-      count : 0
+      visibility: false
     };
   }
-  addOne = () => {
-    this.setState((prevState) =>{
-      return {
-        count : prevState.count+1
-      }})
-    
-  };
-  minusOne = () => {
-    // this.setState({count: this.state.count-1})
+  handleToggleVisibility() {
     this.setState((prevState) => {
       return {
-        count: prevState.count-1
-      }
-    })
-    
-  };
-  reset = () => {
-    this.setState(()=>{return {count: 0}})
-    // this.setState({count : 0});
-    // this.setState({count : this.state.count+1});
-  };
+        visibility: !prevState.visibility
+      };
+    });
+  }
   render() {
     return (
       <div>
-        <h1> Count : {this.state.count} </h1>
-        <button onClick={this.addOne}>+1</button>
-        <button onClick={this.minusOne}>-1</button>
-        <button onClick={this.reset}>reset</button>
+        <h1>Visibility Toggle</h1>
+        <button onClick={this.handleToggleVisibility}>
+          {this.state.visibility ? 'Hide details' : 'Show details'}
+        </button>
+        {this.state.visibility && (
+          <div>
+            <p>Hey. These are some details you can now see!</p>
+          </div>
+        )}
       </div>
-    )
+    );
   }
 }
-ReactDOM.render(<Counter></Counter>, document.getElementById('root'));
+
+ReactDOM.render(<VisibilityToggle />, document.getElementById('root'));

@@ -26,8 +26,14 @@ class Action extends React.Component {
   }
 }
 class Options extends React.Component {
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props){
+    super(props);
+    this.handleRemoveAll = this.handleRemoveAll.bind(this);
+  }
   handleRemoveAll() {
-    alert('handel remov');
+    // alert('handel remov');
+    alert(this.props.options);
   }
   render() {
     return (
@@ -85,7 +91,15 @@ class IndecisionApp extends React.Component {
     )
   }
 }
+// const obj = {
+//   name: 'Vikram',
+//   getName(){
+//     return this.name;
+//   }
+// }
+// const getName = obj.getName.bind(obj);
 
+// console.log(getName());
 ReactDOM.render(<IndecisionApp></IndecisionApp>,
   document.getElementById('root')
 );
